@@ -4,6 +4,12 @@
 #include <errno.h>
 #include "openfile.h"
 
+/*
+ * openFile - Helper function for opening files. Returns
+ *            FILE if successful otherwise NULL;
+ * @file - filename to open
+ * @option - enum value for file opening mode
+ */
 FILE           *
 openFile(const char *file, int option)
 {
