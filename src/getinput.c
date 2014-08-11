@@ -13,9 +13,10 @@ getinput (char *username, char *password, int method)
 {
   size_t size = 25;
   printf("Username: ");
-  getuser(username);
+  getuser(username, size);
   printf("Password: ");
   getpassword(password, size);
+
 }
 
 void 
@@ -24,7 +25,7 @@ getuser(char *username)
   char input[25];
   while (1)
     {
-      scanf(%25s, input);
+      fgets(input, size, stdin);
       if (strlen(input) < 1)
         {
           fprintf(stderr, "input cannot be blank\n");
@@ -32,6 +33,7 @@ getuser(char *username)
         }
       else
         {
+          input[strlen(input) -1] = '\0';
           strcpy(username, input);
           getchar();
           return;
@@ -39,12 +41,12 @@ getuser(char *username)
     }
 }
 
-int
+void
 getpassword(char *password size_t size)
 {
   struct termios old, new;
-  int nread;
-  
+  size_t nread = 0;
+
   /* turn echoing off */
   if (tcgetattr (fileno(stdin), &old) != 0)
     return -1;
@@ -54,4 +56,7 @@ getpassword(char *password size_t size)
     return -1;
   /* read the password */
   nread = getline(password, size, stdin);
+  password[strlen(password) -1] = '\0';
+  /* restore terminal */
+  (void) tcsetatr(fileno(stdin), TCSAFLUSH, &old);
 }
