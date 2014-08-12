@@ -17,7 +17,12 @@ $(TARGET):	$(SDIR)/main.c	$(LTARGET).dylib
 	$(CC)	$(CFLAGS)	$(OBJS)	-o	$@	$^	$(INCLUDES)	$(LFLAGS)	$(LIBS)
 
 _LOBJ=	\
-		adduser.o
+		adduser.o	\
+		concat.o	\
+		getinput.o	\
+		openfile.o	\
+		generatesha.o	\
+		generateuuid.o
 
 LOBJ=	$(patsubst	%,$(OBJDIR)/%,$(_LOBJ))
 
