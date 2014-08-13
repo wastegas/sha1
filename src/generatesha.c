@@ -1,4 +1,5 @@
 #include <openssl/sha.h>
+#include <string.h>
 /* #include <openssl/evp.h> */
 
 /*
@@ -41,8 +42,7 @@ void
 generate_sha1_hash(char *data, unsigned char *md_value)
 {
 	SHA_CTX		ctx;
-  SHA1_Init(&ctx);
-  if (ctx != NULL)
+  if (SHA1_Init(&ctx) != 0)
     {
       SHA1_Update(&ctx, (const void *)data, strlen(data));
 	    SHA1_Final(md_value, &ctx);

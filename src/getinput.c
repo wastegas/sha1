@@ -35,7 +35,6 @@ getuser(char *username, size_t size)
         {
           input[strlen(input) -1] = '\0';
           strcpy(username, input);
-          getchar();
           return;
         }
     }

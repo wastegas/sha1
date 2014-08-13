@@ -10,6 +10,6 @@ void
 generate_uuid(char *out)
 {
   uuid_t    uuid;
-  if (uuid_generate_time_safe(uuid) == 0)
-    uuid_unparse(uuid, out);
+  uuid_generate_random(uuid);
+  uuid_unparse(uuid, out);
 }
