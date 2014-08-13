@@ -1,9 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <errno.h>
 #include "adduser.h"
 #include "account.h"
 #include "openfile.h"
 #include "getinput.h"
+#include "generateuuid.h"
+#include "generatesha.h"
 
 static void writerecord(account*);
 
@@ -21,10 +25,10 @@ adduser()
   account *_a   = malloc(sizeof(*_a));
 
 
-  getinput(username, stringpassword, ADD);
-  generateuuid(uuid);
+  getinput(username, stringpassword);
+  generate_uuid(uuid);
   saltedpass = concatinate(stringpassword, uuid);
-  generate_sha1_hash(saltedpassword, password);
+  generate_sha1_hash(saltedpass, password);
   
   strncpy(_a->username, username, 25);
   strncpy(_a->password, password, SHA_DIGEST_LENGTH);
@@ -46,5 +50,5 @@ writerecord(account *_a)
       fclose(fp);
       exit(EXIT_FAILURE);
     }
-  fpclose(fp);
+  fclose(fp);
 }

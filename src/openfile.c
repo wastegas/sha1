@@ -38,7 +38,7 @@ openFile(const char *file, int option)
 
 	if ((inFile = fopen(file, mode)) == NULL) {
 		fprintf(stderr, "Con't open %s; %s.\n", file,
-			strerror(errorno));
+			strerror(errno));
 		free(mode);
 		return NULL;
 	}

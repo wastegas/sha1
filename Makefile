@@ -4,7 +4,7 @@ CFLAGS=	-std=c11	`pkg-config --cflags glib-2.0`	\
 			-Wall	-O3	-g	$(INCLUDES)
 LDFLAGS=	-dynamiclib	`pkg-config --libs glib-2.0`
 LFLAGS=	-L./build/lib
-LIBS=	-lacct
+LIBS=	-lacct	-lcrypto
 OBJDIR=./obj
 SDIR=./src
 BUILDDIR=./build/bin
