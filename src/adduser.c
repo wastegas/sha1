@@ -8,6 +8,7 @@
 #include "getinput.h"
 #include "generateuuid.h"
 #include "generatesha.h"
+#include "concat.h"
 
 static void writerecord(account*);
 
@@ -19,11 +20,13 @@ adduser()
   char          username[25];
   unsigned char password[SHA_DIGEST_LENGTH];
   char          uuid[40];  
-  char          input[25];
   char          stringpassword[25];
   char          *saltedpass = malloc(strlen(stringpassword) + 36);
+  if (saltedpass == NULL)
+    exit(EXIT_FAILURE);
   account *_a   = malloc(sizeof(*_a));
-
+  if (_a == NULL)
+    exit(EXIT_FAILURE);
 
   getinput(username, stringpassword);
   generate_uuid(uuid);
@@ -36,6 +39,7 @@ adduser()
   _a->uuid[36] = '\0';
 
   writerecord(_a);
+  free(_a);
 }
 
 void
