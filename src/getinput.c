@@ -16,7 +16,6 @@ getinput (char *username, char *password)
   getuser(username, size);
   printf("Password: ");
   getpassword(&password, &size);
-
 }
 
 void 
