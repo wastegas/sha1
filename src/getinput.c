@@ -16,10 +16,17 @@ getinput (char *username, char *password)
   char *cpass = confirmpass;
   printf("Username: ");
   getuser(username, size);
-  printf("Password: ");
-  getpassword(&password, &size);
-  printf("Confirm:  ");
-  getpassword(&cpass, &size);
+  while(1)
+    {
+      printf("Password: ");
+      getpassword(&password, &size);
+      printf("\nConfirm:  ");
+      getpassword(&cpass, &size);
+      if (strcmp(password, cpass) == 0)
+        break;
+      else
+        puts("Password does not match");
+    }
 }
 
 void 
