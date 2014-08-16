@@ -13,12 +13,13 @@ getinput (char *username, char *password)
 {
   size_t size = 25;
   char confirmpass[25];
+  char *cpass = confirmpass;
   printf("Username: ");
   getuser(username, size);
   printf("Password: ");
   getpassword(&password, &size);
   printf("Confirm:  ");
-  getpassword(&confirmpass, &size);
+  getpassword(&cpass, &size);
 }
 
 void 
